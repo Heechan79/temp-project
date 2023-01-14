@@ -22,7 +22,7 @@ export function Companies() {
       <div>
         <div>Search From with Button</div>
 
-        <div className={styles.listContainer} data-testid="">
+        <div className={styles.listContainer} data-testid="companies-list">
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
