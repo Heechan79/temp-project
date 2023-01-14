@@ -8,6 +8,8 @@ import { Navbar } from "./layout";
 import { Companies, CompanyDetail, Root } from "./routes";
 import "./index.css";
 
+const queryClient = new QueryClient();
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,8 +20,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
