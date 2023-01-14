@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+
 import { CompanyAPIResponse } from "../models/company.model";
 import { API_URL } from "../settings";
 

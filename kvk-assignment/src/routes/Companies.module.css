@@ -1,0 +1,8 @@
+.companies {
+  display: flex;
+  justify-content: center;
+}
+
+.listContainer {
+  max-width: 1000px;
+}
