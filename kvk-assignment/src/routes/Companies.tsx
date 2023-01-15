@@ -1,4 +1,5 @@
 import React from "react";
+import { debounce } from "lodash";
 import {
   TableContainer,
   Paper,
@@ -7,20 +8,46 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Button,
+  TextField,
 } from "@mui/material";
 
 import { useCompaniesQuery } from "../hooks";
 import styles from "./Companies.module.css";
 
 export function Companies() {
-  const { data } = useCompaniesQuery();
+  const [searchTerm, setSearchTerm] = React.useState<string>("");
+  const [query, setQuery] = React.useState<string>("");
+  const { data } = useCompaniesQuery(query);
 
   const companies = data?.data ?? [];
+
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    // TODO: this can be optimized with a lesser state?
+    setSearchTerm(e.target.value);
+
+    const debouncer = debounce(() => {
+      setQuery(() => e.target.value);
+    }, 1500);
+    debouncer();
+  }
 
   return (
     <div className={styles.companies}>
       <div>
-        <div>Search From with Button</div>
+        <form className={styles.searchForm}>
+          <div className={styles.searchField}>
+            <TextField
+              id="outlined-search"
+              label="Search field"
+              type="search"
+              fullWidth
+              onChange={handleSearch}
+              value={searchTerm}
+            />
+          </div>
+          <Button variant="contained">search</Button>
+        </form>
 
         <div className={styles.listContainer} data-testid="companies-list">
           <TableContainer component={Paper}>
