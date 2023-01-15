@@ -6,3 +6,8 @@
 .detailsCard {
   width: 750px;
 }
+
+.backButton {
+  display: flex;
+  justify-content: end;
+}

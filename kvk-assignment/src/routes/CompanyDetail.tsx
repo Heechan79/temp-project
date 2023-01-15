@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Card,
   CardMedia,
@@ -7,7 +8,6 @@ import {
   Alert,
   Button,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
 
 import { useCompanyDetailQuery } from "../hooks";
 import styles from "./CompanyDetail.module.css";
@@ -15,9 +15,14 @@ import styles from "./CompanyDetail.module.css";
 export function CompanyDetail() {
   const { id } = useParams<{ id: string }>();
   const { data, refetch, isError } = useCompanyDetailQuery(id!);
+  const navigate = useNavigate();
 
   const { name, streetName, zipCode, city, catchPhrase, phoneNumber, website } =
     data || {};
+
+  function handleGoBack() {
+    navigate(-1);
+  }
 
   if (isError) {
     return (
@@ -39,6 +44,12 @@ export function CompanyDetail() {
 
   return (
     <>
+      <div className={styles.backButton}>
+        <Button onClick={handleGoBack} variant="text">
+          Back to overview
+        </Button>
+      </div>
+
       {data && (
         <div className={styles.details}>
           <div className={styles.detailsCard}>
