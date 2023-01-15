@@ -3,7 +3,15 @@ export interface CompanyAPIResponse {
   total: number;
 }
 
-export interface Company {
+export interface CompanyDetailsApiResponse {
+  catchPhrase: string;
+  website: string;
+  phoneNumber: string;
+  id: string;
+  companyId: string;
+}
+
+export interface CompanyApiResponse {
   city: string;
   createdAt: string;
   id: string;
@@ -12,3 +20,6 @@ export interface Company {
   streetName: string;
   zipCode: string;
 }
+
+export interface Company extends CompanyApiResponse {}
+export interface CompanyDetails extends CompanyDetailsApiResponse {}
