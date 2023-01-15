@@ -6,7 +6,9 @@ import { Companies } from "./Companies";
 import { UseQueryResult } from "react-query";
 import { Company, CompanyAPIResponse } from "../models/company.model";
 
-import { Alert } from "@mui/material";
+jest.mock("react-router-dom", () => ({
+  useNavigate: jest.fn(),
+}));
 
 it("should render component", () => {
   jest.spyOn(Hooks, "useCompaniesQuery").mockReturnValue({} as any);

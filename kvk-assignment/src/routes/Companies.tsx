@@ -10,18 +10,20 @@ import {
   TableBody,
   Button,
   TextField,
-  Skeleton,
   Alert,
+  Avatar,
 } from "@mui/material";
 
 import { useCompaniesQuery } from "../hooks";
 import styles from "./Companies.module.css";
 import { DEFAULT_DEBOUNCE_TIME } from "../settings";
+import { useNavigate } from "react-router-dom";
 
 export function Companies() {
   const [searchTerm, setSearchTerm] = React.useState<string>("");
   const [query, setQuery] = React.useState<string>("");
   const { data, isError, refetch } = useCompaniesQuery(query);
+  const navigate = useNavigate();
 
   const companies = data?.data ?? [];
 
@@ -33,6 +35,10 @@ export function Companies() {
       setQuery(() => e.target.value);
     }, DEFAULT_DEBOUNCE_TIME);
     debouncer();
+  }
+
+  function navigateToDetail(id: string) {
+    navigate(`${id}`);
   }
 
   if (isError) {
@@ -75,7 +81,6 @@ export function Companies() {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  {/* TODO: simple image component */}
                   <TableCell>Logo</TableCell>
                   <TableCell align="left">Name</TableCell>
                   <TableCell align="left">City</TableCell>
@@ -86,11 +91,13 @@ export function Companies() {
               <TableBody>
                 {companies.map(({ name, city, streetName, logo, id }) => (
                   <TableRow
+                    component="div"
+                    onClick={() => navigateToDetail(id)}
                     key={id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {logo}
+                      <Avatar alt={logo} src={logo} />
                     </TableCell>
                     <TableCell align="left">{name}</TableCell>
                     <TableCell align="left">{city}</TableCell>
