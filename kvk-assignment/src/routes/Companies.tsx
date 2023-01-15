@@ -10,6 +10,8 @@ import {
   TableBody,
   Button,
   TextField,
+  Skeleton,
+  Alert,
 } from "@mui/material";
 
 import { useCompaniesQuery } from "../hooks";
@@ -19,7 +21,7 @@ import { DEFAULT_DEBOUNCE_TIME } from "../settings";
 export function Companies() {
   const [searchTerm, setSearchTerm] = React.useState<string>("");
   const [query, setQuery] = React.useState<string>("");
-  const { data } = useCompaniesQuery(query);
+  const { data, isError, refetch } = useCompaniesQuery(query);
 
   const companies = data?.data ?? [];
 
@@ -31,6 +33,24 @@ export function Companies() {
       setQuery(() => e.target.value);
     }, DEFAULT_DEBOUNCE_TIME);
     debouncer();
+  }
+
+  if (isError) {
+    return (
+      <div className={styles.error}>
+        <Alert
+          id="error-aler"
+          severity="error"
+          action={
+            <Button color="inherit" size="small" onClick={() => refetch()}>
+              RETRY
+            </Button>
+          }
+        >
+          Could not get companies, please retry.
+        </Alert>
+      </div>
+    );
   }
 
   return (

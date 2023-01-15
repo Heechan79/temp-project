@@ -4,7 +4,9 @@ import * as Hooks from "../hooks/useCompaniesQuery";
 import { render, screen } from "@testing-library/react";
 import { Companies } from "./Companies";
 import { UseQueryResult } from "react-query";
-import { CompanyAPIResponse } from "../models/company.model";
+import { Company, CompanyAPIResponse } from "../models/company.model";
+
+import { Alert } from "@mui/material";
 
 it("should render component", () => {
   jest.spyOn(Hooks, "useCompaniesQuery").mockReturnValue({} as any);
@@ -49,4 +51,16 @@ it("should render list with items", () => {
 
   expect(listItem1).toBeVisible();
   expect(listItem2).toBeVisible();
+});
+
+it("should display the Alert component when error response is returned", () => {
+  jest.spyOn(Hooks, "useCompaniesQuery").mockReturnValue({
+    data: { total: 2, data: [] as Company[] },
+    isError: true,
+  } as UseQueryResult<CompanyAPIResponse, unknown>);
+
+  render(<Companies />);
+  const alertComp = screen.getByRole("alert");
+
+  expect(alertComp).toBeVisible();
 });
