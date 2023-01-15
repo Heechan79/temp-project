@@ -38,7 +38,7 @@ export function Companies() {
 
   if (isError) {
     return (
-      <div className={styles.error}>
+      <div className="error">
         <Alert
           id="error-aler"
           severity="error"
