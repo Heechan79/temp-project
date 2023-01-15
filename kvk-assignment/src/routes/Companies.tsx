@@ -17,13 +17,12 @@ import {
 import { useCompaniesQuery } from "../hooks";
 import styles from "./Companies.module.css";
 import { DEFAULT_DEBOUNCE_TIME } from "../settings";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function Companies() {
   const [searchTerm, setSearchTerm] = React.useState<string>("");
   const [query, setQuery] = React.useState<string>("");
   const { data, isError, refetch } = useCompaniesQuery(query);
-  const navigate = useNavigate();
 
   const companies = data?.data ?? [];
 
@@ -35,10 +34,6 @@ export function Companies() {
       setQuery(() => e.target.value);
     }, DEFAULT_DEBOUNCE_TIME);
     debouncer();
-  }
-
-  function navigateToDetail(id: string) {
-    navigate(`${id}`);
   }
 
   if (isError) {
@@ -91,8 +86,8 @@ export function Companies() {
               <TableBody>
                 {companies.map(({ name, city, streetName, logo, id }) => (
                   <TableRow
-                    component="div"
-                    onClick={() => navigateToDetail(id)}
+                    component={Link}
+                    to={id}
                     key={id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
