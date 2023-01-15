@@ -18,9 +18,9 @@ export function useCompaniesQuery(searchTerm: string) {
     searchTerm === "" || // default when no entry is given and needs to call the companies endpoint
     (searchTerm.length > 0 && searchTerm.trim().length > 0); // allow user input with whitespaces but do not make requests
   return useQuery<CompanyAPIResponse>({
-    queryKey: [key, searchTerm],
+    queryKey: [key, searchTerm], // Make new query when new search term is provided otherwise get from cache
     queryFn: () => getCompanies(searchTerm),
-    staleTime: DEFAULT_STALETIME, // In the assumption the list of companies wont be updated that frequently
+    staleTime: DEFAULT_STALETIME, // In the assumption companies wont be updated frequently, so no background refresh within stale time
     enabled: hasValidString,
   });
 }

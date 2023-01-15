@@ -14,6 +14,7 @@ import {
 
 import { useCompaniesQuery } from "../hooks";
 import styles from "./Companies.module.css";
+import { DEFAULT_DEBOUNCE_TIME } from "../settings";
 
 export function Companies() {
   const [searchTerm, setSearchTerm] = React.useState<string>("");
@@ -28,7 +29,7 @@ export function Companies() {
 
     const debouncer = debounce(() => {
       setQuery(() => e.target.value);
-    }, 1500);
+    }, DEFAULT_DEBOUNCE_TIME);
     debouncer();
   }
 
