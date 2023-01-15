@@ -24,7 +24,7 @@ async function getCompanyDetails(id: string): Promise<FullCompanyDetails> {
 export function useCompanyDetailQuery(id: string) {
   const key = "companies";
   return useQuery<FullCompanyDetails>({
-    queryKey: [key],
+    queryKey: [key, id],
     queryFn: () => getCompanyDetails(id),
     staleTime: DEFAULT_STALETIME,
   });
