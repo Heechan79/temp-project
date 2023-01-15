@@ -28,6 +28,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Navbar />
+
       <RouterProvider router={router}></RouterProvider>
     </QueryClientProvider>
   </React.StrictMode>

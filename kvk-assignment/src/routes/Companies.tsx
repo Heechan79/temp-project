@@ -80,12 +80,15 @@ export function Companies() {
               <TableHead component="div">
                 <TableRow component="div">
                   <TableCell component="div">Logo</TableCell>
+
                   <TableCell component="div" align="left">
                     Name
                   </TableCell>
+
                   <TableCell component="div" align="left">
                     City
                   </TableCell>
+
                   <TableCell component="div" align="left">
                     Street name
                   </TableCell>
@@ -103,12 +106,15 @@ export function Companies() {
                     <TableCell component="div" scope="row">
                       <Avatar alt={logo} src={logo} />
                     </TableCell>
+
                     <TableCell component="div" align="left">
                       {name}
                     </TableCell>
+
                     <TableCell component="div" align="left">
                       {city}
                     </TableCell>
+
                     <TableCell component="div" align="left">
                       {streetName}
                     </TableCell>

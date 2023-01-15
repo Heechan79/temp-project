@@ -1,3 +1,4 @@
+// Models representing the responses from the backend/api
 export interface CompanyAPIResponse {
   data: Company[];
   total: number;
@@ -21,6 +22,10 @@ export interface CompanyApiResponse {
   zipCode: string;
 }
 
+// Models used in the client
+export interface Company extends CompanyApiResponse {}
+export interface CompanyDetails extends CompanyDetailsApiResponse {}
+
 // TODO: preferable using this model in the client/frontend. This model could be composed from the 2 calls
 // to get the full details. Currently unused.
 export interface CompanyDetailsClient {
@@ -39,6 +44,3 @@ export interface CompanyDetailsClient {
     phoneNumber: string;
   };
 }
-
-export interface Company extends CompanyApiResponse {}
-export interface CompanyDetails extends CompanyDetailsApiResponse {}

@@ -59,6 +59,7 @@ export function CompanyDetail() {
                 image="https://via.placeholder.com/150"
                 title="green iguana"
               />
+
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {name}
@@ -66,22 +67,18 @@ export function CompanyDetail() {
 
                 <Typography
                   style={{ marginBottom: "10px" }}
-                  variant="body2"
+                  variant="subtitle2"
                   color="text.secondary"
                 >
                   {streetName} - {zipCode} - {city}
                 </Typography>
 
-                <Typography
-                  style={{ marginBottom: "10px" }}
-                  variant="subtitle1"
-                >
+                <Typography style={{ marginBottom: "10px" }} variant="body1">
                   {catchPhrase}
                 </Typography>
-                <Typography variant="subtitle1">
-                  Telephone: {phoneNumber}
-                </Typography>
-                <Typography variant="subtitle1">
+
+                <Typography variant="caption">
+                  {phoneNumber} |{" "}
                   <a href={website} target="_blank" rel="noreferrer">
                     {website}
                   </a>
