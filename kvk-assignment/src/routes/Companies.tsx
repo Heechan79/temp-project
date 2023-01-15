@@ -61,14 +61,13 @@ export function Companies() {
           <div className={styles.searchField}>
             <TextField
               id="outlined-search"
-              label="Search field"
+              label="Search for companies"
               type="search"
               fullWidth
               onChange={handleSearch}
               value={searchTerm}
             />
           </div>
-          <Button variant="contained">search</Button>
         </form>
 
         <div className={styles.listContainer} data-testid="companies-list">
