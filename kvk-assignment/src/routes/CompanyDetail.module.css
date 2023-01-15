@@ -1,0 +1,8 @@
+.details {
+  display: flex;
+  justify-content: center;
+}
+
+.detailsCard {
+  width: 750px;
+}

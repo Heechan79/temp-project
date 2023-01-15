@@ -73,17 +73,27 @@ export function Companies() {
 
         <div className={styles.listContainer} data-testid="companies-list">
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Logo</TableCell>
-                  <TableCell align="left">Name</TableCell>
-                  <TableCell align="left">City</TableCell>
-                  <TableCell align="left">Street name</TableCell>
+            <Table
+              sx={{ minWidth: 650 }}
+              aria-label="simple table"
+              component="div"
+            >
+              <TableHead component="div">
+                <TableRow component="div">
+                  <TableCell component="div">Logo</TableCell>
+                  <TableCell component="div" align="left">
+                    Name
+                  </TableCell>
+                  <TableCell component="div" align="left">
+                    City
+                  </TableCell>
+                  <TableCell component="div" align="left">
+                    Street name
+                  </TableCell>
                 </TableRow>
               </TableHead>
 
-              <TableBody>
+              <TableBody component="div">
                 {companies.map(({ name, city, streetName, logo, id }) => (
                   <TableRow
                     component={Link}
@@ -91,12 +101,18 @@ export function Companies() {
                     key={id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell component="div" scope="row">
                       <Avatar alt={logo} src={logo} />
                     </TableCell>
-                    <TableCell align="left">{name}</TableCell>
-                    <TableCell align="left">{city}</TableCell>
-                    <TableCell align="left">{streetName}</TableCell>
+                    <TableCell component="div" align="left">
+                      {name}
+                    </TableCell>
+                    <TableCell component="div" align="left">
+                      {city}
+                    </TableCell>
+                    <TableCell component="div" align="left">
+                      {streetName}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
