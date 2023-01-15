@@ -3,10 +3,10 @@ import { Outlet } from "react-router-dom";
 
 export function Root() {
   return (
-    <div>
+    <main>
       <div>
         <Outlet />
       </div>
-    </div>
+    </main>
   );
 }

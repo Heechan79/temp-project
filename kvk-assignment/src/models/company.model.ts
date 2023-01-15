@@ -21,5 +21,24 @@ export interface CompanyApiResponse {
   zipCode: string;
 }
 
+// TODO: preferable using this model in the client/frontend. This model could be composed from the 2 calls
+// to get the full details. Currently unused.
+export interface CompanyDetailsClient {
+  id: string;
+  companyId: string;
+  catchPhrase: string;
+  name: string;
+  logo: string;
+  address: {
+    streetName: string;
+    zipCode: string;
+    city: string;
+  };
+  contact: {
+    website: string;
+    phoneNumber: string;
+  };
+}
+
 export interface Company extends CompanyApiResponse {}
 export interface CompanyDetails extends CompanyDetailsApiResponse {}
