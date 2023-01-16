@@ -27,14 +27,17 @@ export function Companies() {
   const companies = data?.data ?? [];
 
   function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-    // TODO: this can be optimized with a lesser state?
     setSearchTerm(e.target.value);
+  }
 
+  React.useEffect(() => {
     const debouncer = debounce(() => {
-      setQuery(() => e.target.value);
+      setQuery(() => searchTerm);
     }, DEFAULT_DEBOUNCE_TIME);
     debouncer();
-  }
+
+    return () => debouncer.cancel();
+  }, [searchTerm]);
 
   if (isError) {
     return (
