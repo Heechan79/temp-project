@@ -16,7 +16,6 @@ it("should render component", () => {
 });
 
 it("should render list with items", () => {
-  // TODO: Move to fixtures
   const mockData = [
     {
       id: "1",
@@ -45,6 +44,8 @@ it("should render list with items", () => {
       unknown
     >);
 
+  // It seems it still renders with a <tr> wrapper instead of a <a> when <Link /> is provided as a component prop in the test environment.
+  // Now is outputs a warning but tests still pass.
   render(<Companies />);
 
   //  Maybe not the best selector but stumble upon some limitation of setting test-id on MUI components
